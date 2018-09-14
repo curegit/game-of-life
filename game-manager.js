@@ -25,18 +25,19 @@ window.onload = function()
   {
     game.Next();
   };
+  var func_interval = function()
+  {
+    var i = 1000 / +document.getElementById("speed").value;
+    game.SetInterval(i);
+  };
   var func_play = function()
   {
+    func_interval();
     game.Play();
   };
   var func_pause = function()
   {
     game.Pause();
-  };
-  var func_interval = function()
-  {
-    var i = 1000 / +document.getElementById("speed").value;
-    game.SetInterval(i);
   };
   document.getElementById("create").addEventListener("click", func_create, false);
   document.getElementById("random").addEventListener("click", func_rand, false);
