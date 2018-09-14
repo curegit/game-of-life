@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Game of Life</title>
+    <script type="text/javascript" src="game-of-life.js"></script>
+    <script type="text/javascript" src="game-manager.js"></script>
+  </head>
+  <body>
+    <h1>Game of Life</h1>
+    <h2>World Configuration</h2>
+    <menu>
+      Horizontal: <input type="number" min=10 value=50 max=2000 id="width">
+      Vertical: <input type="number" min=10 value=50 max=2000 id="height">
+      <input type="checkbox" id="xlap" checked="checked"> Horizontal loop
+      <input type="checkbox" id="ylap" checked="checked"> Vertical loop
+      <button id="create">Re-create</button>
+    </menu>
+    <hr>
+    <h2>Lives</h2>
+    <menu>
+      <button id="random">Spawn randomly</button>
+      <button id="next">Age one generation</button>
+    </menu>
+    <h2>Animation</h2>
+    <menu>
+      Speed: <input type="range" name="range" min=1 max=50 value=5 id="speed" style="vertical-align: middle;">
+      <button id="play">Play</button>
+      <button id="pause">Pause</button>
+    </menu>
+    <canvas id="frame"></canvas>
+  </body>
+</html>
