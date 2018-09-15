@@ -24,6 +24,8 @@ GameOfLife.Cell = (function() {
             this.next = false;
         } else if (!this.life && count == 3) {
             this.next = true;
+        } else {
+            this.next = this.life;
         }
     };
 

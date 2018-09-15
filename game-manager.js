@@ -7,15 +7,12 @@ window.onload = function() {
     var func_create = function() {
         var width = +document.getElementById("width").value;
         var height = +document.getElementById("height").value;
-        var xlap = document.getElementById("xlap").checked == "checked";
-        var ylap = document.getElementById("ylap").checked == "checked";
+        var xlap = document.getElementById("xlap").checked;
+        var ylap = document.getElementById("ylap").checked;
         game.CreateWorld(width, height, xlap, ylap)
     };
     var func_rand = function() {
         game.RandomRate();
-    };
-    var func_percentage = function() {
-        var p = 0;
     };
     var func_next = function() {
         game.Next();
