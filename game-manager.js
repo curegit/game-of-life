@@ -5,6 +5,7 @@ window.onload = function() {
     game.Random(0.3);
     game.SetInterval(500);
     var func_create = function() {
+        game.Pause();
         var width = +document.getElementById("width").value;
         var height = +document.getElementById("height").value;
         var xlap = document.getElementById("xlap").checked;
