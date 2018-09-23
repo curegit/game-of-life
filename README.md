@@ -4,4 +4,5 @@ This is Conway's Game of Life implemented by Canvas and plain JavaScript (before
 
 [Visit this page to play](https://curegit.github.io/html5-game-of-life/)
 
-![game of life grid](sample.png)
+![game of life grid](preview.gif)
+
