@@ -7,6 +7,14 @@ This is Conway's Game of Life implemented by Canvas and plain JavaScript.
 
 ## Usage
 
+1. Load `game-of-life.js`
+2. Make a Game instance
+3. Create a world
+4. Configure the game
+5. Run
+
+### Code example
+
 ```js
 window.onload = function() {
     var canvas = document.getElementById("canvasID");
