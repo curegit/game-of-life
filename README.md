@@ -1,6 +1,6 @@
-# HTML - Game of Life
+# Game of Life
 
-This is Conway's Game of Life implemented by Canvas and plain JavaScript.  
+Conway's Game of Life with Canvas and JavaScript
 [Demo](https://curegit.github.io/html-game-of-life/)
 
 ![game of life grid](preview.gif)
