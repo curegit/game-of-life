@@ -1,6 +1,7 @@
 # Game of Life
 
 Conway's Game of Life with Canvas and JavaScript
+
 [Demo](https://curegit.github.io/html-game-of-life/)
 
 ![game of life grid](preview.gif)
@@ -28,4 +29,4 @@ window.onload = function() {
 
 ## License
 
-MIT
+[MIT](LICENSE)
