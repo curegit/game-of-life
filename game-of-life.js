@@ -174,7 +174,7 @@ GameOfLife.Canvas = (function() {
         var width = world.width * this.px;
         var height = world.height * this.px;
         this.canvas.width = width;
-        this.canvas.height = height + this.fontsize;
+        this.canvas.height = height + this.fontsize + 8;
         // グリッド描画
         if (this.grid) {
             ctx.strokeStyle = this.gridcolor;
@@ -203,7 +203,7 @@ GameOfLife.Canvas = (function() {
         ctx.font = this.fontsize + "px '" + this.font + "', sans-serif";
         ctx.fillStyle = this.fontcolor;
         ctx.textAlign = "left";
-        var text = "Generation: " + world.generation + "  Lives: " + liveslist.length;
+        var text = "World: ("+ world.width + "x" + world.height + ", " + (world.xlap ? (world.ylap ? "loop" : "h-loop only") : (world.ylap ? "v-loop only" : "no loop")) +"), Generation: " + world.generation + ", Lives: " + liveslist.length;
         ctx.fillText(text, 10, height + this.fontsize);
         // イベント処理のため参照先を記憶
         this.lastworld = world;
