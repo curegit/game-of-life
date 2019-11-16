@@ -184,7 +184,6 @@ GameOfLife.Canvas = (function() {
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
-                ctx.closePath();
                 ctx.stroke();
             };
             for (var i = 0; i <= width; i = i + this.px) {
