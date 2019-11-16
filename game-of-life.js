@@ -157,6 +157,7 @@ GameOfLife.Canvas = (function() {
         this.font = "Times New Roman";
         this.fontsize = 15;
         this.fontcolor = "#000";
+        this.lineheight = this.fontsize + 8;
         this.canclick = true;
         this.lastworld = null;
         var self = this;
@@ -174,7 +175,7 @@ GameOfLife.Canvas = (function() {
         var width = world.width * this.px;
         var height = world.height * this.px;
         this.canvas.width = width;
-        this.canvas.height = height + this.fontsize + 8;
+        this.canvas.height = height + this.lineheight;
         // グリッド描画
         if (this.grid) {
             ctx.strokeStyle = this.gridcolor;
@@ -214,7 +215,7 @@ GameOfLife.Canvas = (function() {
         if (this.canclick) {
             var rect = event.target.getBoundingClientRect();
             var x = (event.clientX - rect.left) / (rect.right - rect.left) * this.lastworld.width;
-            var y = (event.clientY - rect.top) / (rect.bottom - rect.top) * (this.lastworld.height + this.fontsize / this.px);
+            var y = (event.clientY - rect.top) / (rect.bottom - rect.top) * (this.lastworld.height + this.lineheight / this.px);
             var intx = Math.floor(x);
             var inty = Math.floor(y);
             this.lastworld.Reverse(intx, inty);
