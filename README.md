@@ -17,14 +17,14 @@ Conway's Game of Life with Canvas and JavaScript
 ### Code example
 
 ```js
-window.onload = function() {
+window.onload = function () {
     var canvas = document.getElementById("canvasID");
     var game = new GameOfLife.Game(canvas);
     game.CreateWorld(50, 50, true, true);
     game.Random(0.2);
     game.SetInterval(500);
     game.Play();
-}
+};
 ```
 
 ## License
