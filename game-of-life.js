@@ -1,21 +1,21 @@
-var GameOfLife = function() {};
+var GameOfLife = function () {};
 
-GameOfLife.Cell = (function() {
-    var Cell = function() {
+GameOfLife.Cell = (function () {
+    var Cell = function () {
         this.life = false;
         this.next = false;
         this.neighbors = [];
     };
 
     // 隣接セルを追加する
-    Cell.prototype.AddNeighbor = function(cell) {
+    Cell.prototype.AddNeighbor = function (cell) {
         this.neighbors.push(cell);
     };
 
     // 次の状態を予約する
-    Cell.prototype.Reserve = function() {
+    Cell.prototype.Reserve = function () {
         var count = 0;
-        this.neighbors.forEach(function(cell) {
+        this.neighbors.forEach(function (cell) {
             if (cell.life) {
                 count++;
             }
@@ -30,30 +30,30 @@ GameOfLife.Cell = (function() {
     };
 
     // 状態を移行する
-    Cell.prototype.Translate = function() {
+    Cell.prototype.Translate = function () {
         this.life = this.next;
     };
 
     // 誕生させる
-    Cell.prototype.Birth = function() {
+    Cell.prototype.Birth = function () {
         this.life = true;
     };
 
     // 死滅させる
-    Cell.prototype.Die = function() {
+    Cell.prototype.Die = function () {
         this.life = false;
     };
 
     // 生死を反転させる
-    Cell.prototype.Reverse = function() {
+    Cell.prototype.Reverse = function () {
         this.life = !this.life;
     };
 
     return Cell;
 })();
 
-GameOfLife.World = (function() {
-    var World = function(width, height, xlap, ylap) {
+GameOfLife.World = (function () {
+    var World = function (width, height, xlap, ylap) {
         this.width = width;
         this.height = height;
         this.xlap = xlap;
@@ -88,9 +88,9 @@ GameOfLife.World = (function() {
     };
 
     // 世界全体に生命を確率pで発生させる
-    World.prototype.Random = function(p) {
-        this.cells.forEach(function(col) {
-            col.forEach(function(cell) {
+    World.prototype.Random = function (p) {
+        this.cells.forEach(function (col) {
+            col.forEach(function (cell) {
                 if (Math.random() < p) {
                     cell.Birth();
                 }
@@ -99,28 +99,28 @@ GameOfLife.World = (function() {
     };
 
     // 生命を一掃
-    World.prototype.Clear = function() {
-        this.cells.forEach(function(col) {
-            col.forEach(function(cell) {
+    World.prototype.Clear = function () {
+        this.cells.forEach(function (col) {
+            col.forEach(function (cell) {
                 cell.Die();
             });
         });
     };
 
     // x,yにあるセルの生死を反転する
-    World.prototype.Reverse = function(x, y) {
+    World.prototype.Reverse = function (x, y) {
         this.cells[x][y].Reverse();
     };
 
     // 1世代進む
-    World.prototype.Age = function() {
-        this.cells.forEach(function(col) {
-            col.forEach(function(cell) {
+    World.prototype.Age = function () {
+        this.cells.forEach(function (col) {
+            col.forEach(function (cell) {
                 cell.Reserve();
             });
         });
-        this.cells.forEach(function(col) {
-            col.forEach(function(cell) {
+        this.cells.forEach(function (col) {
+            col.forEach(function (cell) {
                 cell.Translate();
             });
         });
@@ -128,7 +128,7 @@ GameOfLife.World = (function() {
     };
 
     // 生存セルをすべて返す
-    World.prototype.GetLives = function() {
+    World.prototype.GetLives = function () {
         var list = [];
         for (var i = 0; i < this.width; i++) {
             for (var j = 0; j < this.height; j++) {
@@ -146,8 +146,8 @@ GameOfLife.World = (function() {
     return World;
 })();
 
-GameOfLife.Canvas = (function() {
-    var Canvas = function(canvas) {
+GameOfLife.Canvas = (function () {
+    var Canvas = function (canvas) {
         this.canvas = canvas;
         this.px = 10;
         this.cellcolor = "#000";
@@ -167,7 +167,7 @@ GameOfLife.Canvas = (function() {
     };
 
     // セルを描画する
-    Canvas.prototype.Draw = function(world) {
+    Canvas.prototype.Draw = function (world) {
         var ctx = this.canvas.getContext("2d");
         // 消去
         ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -180,7 +180,7 @@ GameOfLife.Canvas = (function() {
         if (this.grid) {
             ctx.strokeStyle = this.gridcolor;
             ctx.lineWidth = this.gridwidth;
-            var line = function(ctx, x1, y1, x2, y2) {
+            var line = function (ctx, x1, y1, x2, y2) {
                 ctx.beginPath();
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
@@ -210,7 +210,7 @@ GameOfLife.Canvas = (function() {
     };
 
     // クリックイベントの処理
-    Canvas.prototype.OnClick = function(event) {
+    Canvas.prototype.OnClick = function (event) {
         if (this.canclick) {
             var rect = event.target.getBoundingClientRect();
             var x = (event.clientX - rect.left) / (rect.right - rect.left) * this.lastworld.width;
@@ -225,8 +225,8 @@ GameOfLife.Canvas = (function() {
     return Canvas;
 })();
 
-GameOfLife.Game = (function() {
-    var Game = function(canvas) {
+GameOfLife.Game = (function () {
+    var Game = function (canvas) {
         this.world = null;
         this.canvas = new GameOfLife.Canvas(canvas);
         this.timer = null;
@@ -235,33 +235,33 @@ GameOfLife.Game = (function() {
     };
 
     // 世界を生成する
-    Game.prototype.CreateWorld = function(width, height, xlap, ylap) {
+    Game.prototype.CreateWorld = function (width, height, xlap, ylap) {
         this.world = new GameOfLife.World(width, height, xlap, ylap);
         this.Refresh();
     };
 
     // ランダムな割合で配置
-    Game.prototype.RandomRate = function() {
+    Game.prototype.RandomRate = function () {
         this.world.Clear();
         this.world.Random(Math.random() * 0.2 + 0.2);
         this.Refresh();
     };
 
     // 割合pでランダム配置
-    Game.prototype.Random = function(p) {
+    Game.prototype.Random = function (p) {
         this.world.Clear();
         this.world.Random(p);
         this.Refresh();
     };
 
     // 1つすすめる
-    Game.prototype.Next = function() {
+    Game.prototype.Next = function () {
         this.world.Age();
         this.Refresh();
     };
 
     // 再生する
-    Game.prototype.Play = function() {
+    Game.prototype.Play = function () {
         if (!this.isPlaying) {
             this.isPlaying = true;
             this.Continue();
@@ -269,16 +269,16 @@ GameOfLife.Game = (function() {
     };
 
     // 一定間隔で更新する
-    Game.prototype.Continue = function() {
+    Game.prototype.Continue = function () {
         var self = this;
         self.Next();
-        this.timer = setTimeout(function() {
-            self.Continue()
+        this.timer = setTimeout(function () {
+            self.Continue();
         }, this.interval);
-    }
+    };
 
     // 一時停止
-    Game.prototype.Pause = function() {
+    Game.prototype.Pause = function () {
         if (this.isPlaying) {
             clearTimeout(this.timer);
             this.isPlaying = false;
@@ -286,12 +286,12 @@ GameOfLife.Game = (function() {
     };
 
     // 更新間隔を設定する
-    Game.prototype.SetInterval = function(interval) {
+    Game.prototype.SetInterval = function (interval) {
         this.interval = interval;
     };
 
     // 描画更新
-    Game.prototype.Refresh = function() {
+    Game.prototype.Refresh = function () {
         this.canvas.Draw(this.world);
     };
 
