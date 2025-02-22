@@ -2,7 +2,7 @@ window.onload = function () {
     var canvas = document.getElementById("frame");
     var game = new GameOfLife.Game(canvas);
     game.CreateWorld(50, 50, true, true);
-    game.Random(0.3);
+    game.Random(0.25);
     game.SetInterval(500);
     var func_create = function () {
         game.Pause();
