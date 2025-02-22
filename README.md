@@ -1,6 +1,6 @@
 # Game of Life
 
-Conway's Game of Life with Canvas and JavaScript
+Conway's Game of Life with HTML Canvas and JavaScript
 
 [Demo](https://curegit.github.io/game-of-life/)
 
@@ -9,7 +9,7 @@ Conway's Game of Life with Canvas and JavaScript
 ## Usage
 
 1. Load `game-of-life.js`
-2. Make a Game instance
+2. Make a `Game` instance
 3. Create a world
 4. Configure the game
 5. Run
