@@ -22,7 +22,7 @@ GameOfLife.Cell = (function () {
         });
         if (this.life && (count <= 1 || count >= 4)) {
             this.next = false;
-        } else if (!this.life && count == 3) {
+        } else if (!this.life && count === 3) {
             this.next = true;
         } else {
             this.next = this.life;
@@ -72,7 +72,7 @@ GameOfLife.World = (function () {
             for (var j = 0; j < this.height; j++) {
                 for (var k = -1; k <= 1; k++) {
                     for (var l = -1; l <= 1; l++) {
-                        if (!(k == 0 && l == 0)) {
+                        if (!(k === 0 && l === 0)) {
                             var tmpx = i + k;
                             var tmpy = j + l;
                             if ((this.xlap || (tmpx >= 0 && tmpx < this.width)) && (this.ylap || (tmpy >= 0 && tmpy < this.height))) {
